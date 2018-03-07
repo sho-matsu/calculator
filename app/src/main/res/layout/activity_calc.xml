@@ -15,7 +15,7 @@
         <EditText
             android:id="@+id/result"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:background="#0000"
@@ -23,7 +23,7 @@
             android:textSize="60dp"
             android:inputType="text"
             android:textAlignment="viewEnd"
-            android:gravity="end"/>
+            android:gravity="end|center_vertical"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -34,7 +34,8 @@
             android:gravity="right|center_vertical"
             android:text="@{viewModel.preResult}"
             android:textSize="40dp"
-            android:lines="1"/>
+            android:lines="1"
+            android:visibility="gone"/>
 
         <TableLayout
             android:layout_width="match_parent"

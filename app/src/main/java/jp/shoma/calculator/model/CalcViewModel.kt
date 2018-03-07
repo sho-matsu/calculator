@@ -2,10 +2,12 @@ package jp.shoma.calculator.model
 
 import android.content.Context
 import android.databinding.ObservableField
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.TextView
 import jp.shoma.calculator.R
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * Created by sho on 2018/03/05.
@@ -14,13 +16,17 @@ class CalcViewModel(private val context: Context) {
 
     companion object {
         val TAG: String = this::class.java.name
+        private const val MAX_DIGIT = 10
     }
 
     var preResult = ObservableField("0")
     var result = ObservableField("0")
-    private var operator: Operator = Operator.NONE
+    private var operator = Operator.NONE
+    private val dotFlg = AtomicBoolean(false)
     private var alreadyCalcValue = 0.0
-    private var nowInputValue = 0.0
+    private var nowInputValue = ""
+    private var nowInputValueInt = 0
+    private var nowInputValueFloat = 0.0
 
     fun onButtonPressed(view: View) {
         val textView = view as TextView
@@ -38,20 +44,22 @@ class CalcViewModel(private val context: Context) {
             context.getString(R.string.button_7),
             context.getString(R.string.button_8),
             context.getString(R.string.button_9) -> {
-                setInputNum(pressedButton)
+                setNum(pressedButton)
                 val num = pressedButton.toInt()
             }
             context.getString(R.string.button_plus),
             context.getString(R.string.button_minus),
             context.getString(R.string.button_multiply),
             context.getString(R.string.button_divide) -> {
-                setInputOperator(pressedButton)
+                setOperator(pressedButton)
             }
             context.getString(R.string.button_equal) -> {
                 calculation()
+                operator = Operator.NONE
+                result.set(alreadyCalcValue.toString())
             }
             context.getString(R.string.button_dot) -> {
-                setInputDot(pressedButton)
+                setDot(pressedButton)
             }
             context.getString(R.string.button_delete) -> {
                 if (result.get().isNotEmpty()) {
@@ -68,28 +76,10 @@ class CalcViewModel(private val context: Context) {
                 result.set("0")
                 preResult.set("0")
                 operator = Operator.NONE
+                dotFlg.set(false)
                 alreadyCalcValue = 0.0
-                nowInputValue = 0.0
-            }
-            else -> {
-                // NOP
-            }
-        }
-    }
-
-    private fun calculation() {
-        when (operator) {
-            Operator.PLUS -> {
-
-            }
-            Operator.MINUS -> {
-
-            }
-            Operator.MULTIPLY -> {
-
-            }
-            Operator.DIVIDE -> {
-
+                nowInputValueInt = 0
+                nowInputValue = ""
             }
             else -> {
                 // NOP
@@ -102,10 +92,12 @@ class CalcViewModel(private val context: Context) {
      *
      * @param input 入力文字
      */
-    private fun setInputNum(input: String) {
+    private fun setNum(input: String) {
         if (result.get() == "0") {
+            nowInputValue = "0"
             result.set(input)
         } else {
+            nowInputValue += input
             result.set(result.get() + input)
         }
     }
@@ -115,12 +107,23 @@ class CalcViewModel(private val context: Context) {
      *
      * @param input 入力文字
      */
-    private fun setInputOperator(input: String) {
+    private fun setOperator(input: String) {
+        val inputOperator = Operator.valueTypeOf(input)
+        if (inputOperator == operator) return
+        calculation()
+        operator = inputOperator
+
         val last = result.get().substring(result.get().length -1)
-        if (input == last) return
-        operator = Operator.valueTypeOf(input)
-        // fixme 直前の入力が演算子だった場合、置き換える
-        result.set(result.get() + input)
+        // 直前の入力が演算子だった場合、置き換える
+        if (TextUtils.equals(context.getString(R.string.button_plus), last)
+                || TextUtils.equals(context.getString(R.string.button_minus), last)
+                || TextUtils.equals(context.getString(R.string.button_multiply), last)
+                || TextUtils.equals(context.getString(R.string.button_divide), last)) {
+            val inputValue = result.get().substring(0, result.get().length -1)
+            result.set(inputValue + input)
+        } else {
+            result.set(result.get() + input)
+        }
     }
 
     /**
@@ -128,8 +131,10 @@ class CalcViewModel(private val context: Context) {
      *
      * @param input 入力文字
      */
-    private fun setInputDot(input: String) {
+    private fun setDot(input: String) {
         if (result.get().contains(input)) return
+        dotFlg.set(true)
+        nowInputValue += input
         result.set(result.get() + input)
     }
 
@@ -144,5 +149,33 @@ class CalcViewModel(private val context: Context) {
             fun valueTypeOf(symbol: String) =
                 values().firstOrNull { it.symbol == symbol } ?: NONE
         }
+    }
+
+    /**
+     * 計算処理
+     */
+    private fun calculation() {
+        if (TextUtils.isEmpty(nowInputValue)) return
+        when (operator) {
+            Operator.PLUS -> {
+                alreadyCalcValue += nowInputValue.toDouble()
+            }
+            Operator.MINUS -> {
+                alreadyCalcValue -= nowInputValue.toDouble()
+            }
+            Operator.MULTIPLY -> {
+                alreadyCalcValue *= nowInputValue.toDouble()
+            }
+            Operator.DIVIDE -> {
+                alreadyCalcValue /= nowInputValue.toDouble()
+            }
+            Operator.NONE -> {
+                alreadyCalcValue = nowInputValue.toDouble()
+            }
+            else -> {
+                // NOP
+            }
+        }
+        nowInputValue = ""
     }
 }
