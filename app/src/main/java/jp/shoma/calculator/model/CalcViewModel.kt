@@ -94,7 +94,7 @@ class CalcViewModel(private val context: Context) {
      */
     private fun setNum(input: String) {
         if (result.get() == "0") {
-            nowInputValue = "0"
+            nowInputValue = input
             result.set(input)
         } else {
             nowInputValue += input
@@ -171,9 +171,6 @@ class CalcViewModel(private val context: Context) {
             }
             Operator.NONE -> {
                 alreadyCalcValue = nowInputValue.toDouble()
-            }
-            else -> {
-                // NOP
             }
         }
         nowInputValue = ""
