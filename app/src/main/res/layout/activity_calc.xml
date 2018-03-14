@@ -46,168 +46,132 @@
             app:rowCount="5">
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_clear"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"
                 app:layout_columnSpan="2"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_delete"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_divide"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_7"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_8"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"
                 app:layout_columnWeight="1"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_9"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_multiply"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_4"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_5"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_6"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_minus"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_1"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_2"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_3"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_plus"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_0"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_dot"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 app:layout_gravity="fill"/>
             <Button
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                style="@style/calc_button_style"
                 android:text="@string/button_equal"
-                android:textSize="20dp"
                 android:onClick="@{viewModel::onButtonPressed}"
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
