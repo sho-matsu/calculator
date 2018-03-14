@@ -14,7 +14,6 @@ class CalcActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_calc)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_calc)
         mBinding.viewModel = CalcViewModel(this)
         val editText = mBinding.result
