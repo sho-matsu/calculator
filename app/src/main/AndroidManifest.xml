@@ -17,9 +17,19 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".CalcWidget">
+        <receiver android:name=".widget.CalcWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/calc_widget_info"/>
+        </receiver>
+        <receiver android:name=".widget.CalcWidgetIntentReceiver"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="UPDATE_WIDGET"/>
             </intent-filter>
 
             <meta-data

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import jp.shoma.calculator.R
+import jp.shoma.calculator.enums.Operator
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -136,19 +137,6 @@ class CalcViewModel(private val context: Context) {
         dotFlg.set(true)
         nowInputValue += input
         result.set(result.get() + input)
-    }
-
-    enum class Operator(val symbol: String) {
-        PLUS("+"),
-        MINUS("-"),
-        MULTIPLY("*"),
-        DIVIDE("/"),
-        NONE("");
-
-        companion object {
-            fun valueTypeOf(symbol: String) =
-                values().firstOrNull { it.symbol == symbol } ?: NONE
-        }
     }
 
     /**
